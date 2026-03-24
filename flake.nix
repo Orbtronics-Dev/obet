@@ -21,6 +21,7 @@
               nodejs
               pnpm
               uv
+              python313
 
               just
             ];
