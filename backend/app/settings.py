@@ -1,8 +1,17 @@
 import json
 from functools import lru_cache
+from pathlib import Path
 from typing import List
 
 from pydantic_settings import BaseSettings
+
+# When running locally from backend/ the root .env is one level up.
+# In Docker, env vars are injected by compose so neither file needs to exist.
+_ROOT_ENV = Path(__file__).resolve().parent.parent.parent / ".env"
+_LOCAL_ENV = Path(__file__).resolve().parent.parent / ".env"
+_ENV_FILES = tuple(
+    str(p) for p in [_ROOT_ENV, _LOCAL_ENV] if True  # pydantic silently ignores missing files
+)
 
 
 class Settings(BaseSettings):
@@ -26,7 +35,7 @@ class Settings(BaseSettings):
     PLATFORM_FEE_PCT: int = 2
 
     class Config:
-        env_file = ".env"
+        env_file = _ENV_FILES
         case_sensitive = True
         extra = "allow"
 

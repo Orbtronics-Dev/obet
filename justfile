@@ -88,10 +88,11 @@ frontend-logs:
 
 # ── Setup ─────────────────────────────────────────────────────────────────────
 
-# Copy example env files (run once after cloning)
+# Copy example env files and write frontend .env.local (run once after cloning)
 init:
-    @cp -n backend/example.env backend/.env && echo "Created backend/.env" || echo "backend/.env already exists"
-    @echo "Done — edit backend/.env before starting services"
+    @cp -n example.env .env && echo "Created .env" || echo ".env already exists"
+    @grep '^NEXT_PUBLIC_' .env > frontend/.env.local && echo "Created frontend/.env.local" || true
+    @echo "Done — edit .env before starting services"
 
 # Full fresh start: build, start, migrate
 bootstrap: init up-build
