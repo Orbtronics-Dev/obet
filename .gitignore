@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+*.egg-info/
+dist/
+.pytest_cache/
+
+# Environment
+.env
+.env.*
+!example.env
+
+# Node / Next.js
+node_modules/
+.next/
+.turbo/
+out/
+
+# Build artifacts
+*.log
+*.tsbuildinfo
+
+# OS
+.DS_Store
+Thumbs.db
